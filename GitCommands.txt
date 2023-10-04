@@ -1,0 +1,17 @@
+GIT Comands
+
+Make new repository on Github.command   
+    get the https and copy it 
+    go to VS code 
+        type git clone <url copy>
+    cd and ls into the directory
+    Make new files
+    tell git to keep track
+        git add .
+    
+    to commit
+        git commit -m "some message"
+    
+    to push to Github
+        git push
+        

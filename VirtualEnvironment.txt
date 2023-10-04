@@ -1,0 +1,23 @@
+Flask
+
+flask run ((((in comand line))))
+
+oooorrrrrr see below:
+
+Start virtual Environment:
+    py -3 -m venv .venv
+
+    .venv\scripts\activate
+
+Install Flask into virtual Environment
+python -m pip install flask
+
+Go to view command pallete at top of VS code
+    Python select interpretor
+        Select at workspace level
+            Star option
+
+python -m flask Run
+
+
+Seems to deactivate venv by deleting the files...?
