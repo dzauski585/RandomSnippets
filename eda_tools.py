@@ -14,3 +14,4 @@ from ydata_profiling import ProfileReport
 profile = ProfileReport(df, title="eda ydata_profiling")
 #minimal=True add this into ProfileReport Method for very large datasets
 profile.to_file("report.html")
+profile.to_notebook_iframe() # embeds the html into the notebook
