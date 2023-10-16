@@ -11,3 +11,6 @@ df.describe() # gives the following information: count, mean, std, min, 25%, 50%
 
 for col in df.columns: # loop that prints all of the columns titles since some of the other pandas tools truncate the lists
     print(col)
+
+#Antoehr option using pandas
+df.columns # shows the same without using for loop
