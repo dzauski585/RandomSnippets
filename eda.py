@@ -5,6 +5,7 @@ import numpy as np #for zero conversion
 %matplotlib inline #keep plots in notebook
 
 df = pd.read_csv("Book1.csv") # read the data from csv other methods for other formats
+# can add to read () encoding = 'utf-16' or ISO8893-1 or latin1 to avoid read errors
 df.shape # attribute returns a colums, rows, total
 df.head() # shows the first 5 rows and corresponding columns
 df.tail() # last 5 rows. Can place numbers in the () to get more or less rows
