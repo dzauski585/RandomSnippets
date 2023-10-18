@@ -25,12 +25,18 @@ df_no_zero = df_no_zero.replace(0, np.nan).dropna(axis=0, how='any', subset=['..
 
 df_numeric = df.select_dtypes(include = ['float64', 'int64']) # Once you know what datatypes you are seeking, create a df with only numeric values
 
+#In order to correlate values need to be numeric. Can convert non numeric with pd.get_dummies()
+df1 = pd.get_dummeies(df)
 
 df_numeric.hist(figsize=(16, 20), bins=50, xlabelsize=8, ylabelsize=8) #Plot all variables in a histogram format
 
 df_num_corr = df_numeric.corr()['...'] #use numeric df and correlate with pandas.corr method to one variable column
 golden = df_num_corr[df_num_corr > 0.5 or df_num_corr < 0.5].sort_values(ascending=False) # makes a list of correlated values > 0.5
 print(f"There is {len(golden)} strongly correlated values with ... :\n{golden}") # prints analysis
+
+#Heat map for graphical analysis of correlation
+plt.figure(figsize=(9, 7))
+sns.heatmap(df.corr(), vmin=-1, vmax=1, cmap='Spectral').set_title("Correlation Plot")
 
 for i in range(0, len(df_numeric.columns), 5): # make colums of 5 and plot the correlation data 
     sns.pairplot(data=df_numeric, x_vars=df_numeric.columns[i:i+5], y_vars=['...'])
