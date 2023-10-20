@@ -2,7 +2,9 @@ import pandas as pd #pandas library
 import seaborn as sns #seaborn charting built in matplotlib
 from matplotlib import pyplot as plt #use matplotlib for tweaks
 import numpy as np #for zero conversion
-%matplotlib inline #keep plots in notebook
+%matplotlib inline 
+#keep plots in notebook
+from sklearn import preprocessing
 
 df = pd.read_csv("Book1.csv") # read the data from csv other methods for other formats
 # can add to read () encoding = 'utf-16' or ISO8893-1 or latin1 to avoid read errors
@@ -26,10 +28,26 @@ df_no_zero = df_no_zero.replace(0, np.nan).dropna(axis=0, how='any', subset=['..
 
 df_numeric = df.select_dtypes(include = ['float64', 'int64']) # Once you know what datatypes you are seeking, create a df with only numeric values
 
-#In order to correlate values need to be numeric. Can convert non numeric with pd.get_dummies()
+#In order to correlate values need to be numeric. Can convert non numeric with pd.get_dummies() or with sklearn
 df1 = pd.get_dummeies(df)
 
-df_numeric.hist(figsize=(16, 20), bins=50, xlabelsize=8, ylabelsize=8) #Plot all variables in a histogram format
+#sklearn method
+le = preprocessing.LabelEncoder()
+df2 =df
+df2['...'] = le.fit_transform(df['...'])
+
+#density plots on same graph
+sns.distplot(df1[df1.... == 1]["..."])
+sns.distplot(df1[df1.... == 0]["..."]).set(title='Charges Density Plot')
+
+#Other plots box plot, scatter, lmplot, catplot
+sns.catplot(x='sex', y='charges', hue='smoker', kind='box', data=df).set(title='Charges based on Smoking and Sex')
+sns.catplot(x='sex', y='charges', hue='smoker', data=df).set(title='Charges based on Smoking and Sex')
+sns.lmplot(x="age", y="charges", hue="smoker", data=df).set(title='Charges based on Age and Sex')
+sns.catplot(x="smoker", kind='count', hue='sex', data=df).set(title='Smoker Counts Differentiated by Gender')
+
+df_numeric.hist(figsize=(16, 20), bins=50, xlabelsize=8, ylabelsize=8, annot=True) #Plot all variables in a histogram format
+df1.corr(numeric_only=True) #use this if you do not want to waste time with non numeric values
 
 df_num_corr = df_numeric.corr()['...'] #use numeric df and correlate with pandas.corr method to one variable column
 golden = df_num_corr[df_num_corr > 0.5 or df_num_corr < 0.5].sort_values(ascending=False) # makes a list of correlated values > 0.5
